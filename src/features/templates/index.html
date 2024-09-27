@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Additional custom styles */
+        .results-container {
+            margin-top: 20px;
+        }
+
+        .column-header {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .result-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        
+        /* Optional: Add some padding to the form */
+        .form-container {
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body class="container">
+
+    <h1 class="mt-5">Find Similar Books</h1>
+
+    <!-- Search Form -->
+    <form method="post" action="/" class="form-container">
+        <div class="form-group">
+            <label for="book_1_name">Enter Book 1 Name:</label>
+            <input type="text" id="book_1_name" name="book_1_name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="book_2_name">Enter Book 2 Name:</label>
+            <input type="text" id="book_2_name" name="book_2_name" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Results Section -->
+    {% if results %}
+        <h2 class="mt-5">Results:</h2>
+        <div class="results-container">
+            <div class="row font-weight-bold">
+                <div class="col-md-3">Book</div>
+                <div class="col-md-3">Genres</div>
+                <div class="col-md-6">Description</div>
+            </div>
+
+            <!-- Loop over each result -->
+            {% for result in results %}
+                <div class="row result-item">
+                    <div class="col-md-3">{{ result['book'] }}</div>
+                    <div class="col-md-3">{{ result['genres'] }}</div>
+                    <div class="col-md-6">{{ result['description'] }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
