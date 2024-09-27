@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 # Load the embedding model and the FAISS index at the start to avoid reloading it with each request
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+
 embeddedder_miniLM_6 = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 new_vector_store = FAISS.load_local('embeddings/docsearch_mini', embeddings=embeddedder_miniLM_6, allow_dangerous_deserialization=True)
 
